@@ -25,7 +25,13 @@ The Online Store database manages:
 ## 📁 Repository Structure
 Online-Store-DB/
 │
-├── docs/ # Requirements, relational schema, data dictionary
-├── diagrams/ # ERD / EER and transaction pathway diagrams
-├── sql/ # All SQL scripts: DDL, DML, queries
+├── docs/
+│ └── Requirements, relational schema, data dictionary
+│
+├── diagrams/
+│ └── ERD, EER, transaction pathway diagrams
+│
+├── sql/
+│ └── All SQL scripts (DDL, DML, queries)
+│
 └── README.md
