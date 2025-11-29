@@ -23,6 +23,7 @@ The Online Store database manages:
 - **Carts and Carts Items**  
 ---
 ## 📁 Repository Structure
+```
 Online-Store-DB/
 │
 ├── docs/
@@ -35,3 +36,4 @@ Online-Store-DB/
 │ └── All SQL scripts (DDL, DML, queries)
 │
 └── README.md
+```
