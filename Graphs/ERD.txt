@@ -1,0 +1,5 @@
+ERD 
+https://www.figma.com/board/dyBTmkdLkT2j3F67uFDsFV/online-store-ERD
+
+transactions path way
+https://www.figma.com/board/tnbjNEN4wBhLiQln1M1fi6/Untitled?node-id=0-1&p=f
