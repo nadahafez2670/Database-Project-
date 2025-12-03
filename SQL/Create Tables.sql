@@ -16,7 +16,7 @@ CREATE TABLE Customer_Phones(
     phone_id INT PRIMARY KEY AUTO_INCREMENT,
     customer_id int ,
     phone_number varchar(20) NOT NULL ,
-    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id) ON DELETE CASCADE
 )
 
 --create cart table--
@@ -25,7 +25,7 @@ cart_id int PRIMARY KEY AUTO_INCREMENT,
 customer_id int ,
 quantity int DEFAULT 0 ,
 created_at DATETIME ,
-FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+FOREIGN KEY (customer_id) REFERENCES Customers(customer_id) ON DELETE CASCADE
 )
 
 --create products table --
@@ -44,7 +44,7 @@ cart_item_id int PRIMARY KEY AUTO_INCREMENT,
 cart_id int ,
 product_id int ,
 quantity int NOT NULL ,
-FOREIGN KEY (cart_id) REFERENCES Cart(cart_id),
+FOREIGN KEY (cart_id) REFERENCES Cart(cart_id) ON DELETE CASCADE,
 FOREIGN KEY (product_id) REFERENCES Products(product_id)
 )
 
@@ -65,7 +65,7 @@ order_id int,
 product_id int,
 quantity int NOT NULL ,
 price decimal(10,2) NOT NULL,
- FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+ FOREIGN KEY (order_id) REFERENCES Orders(order_id) ON DELETE CASCADE,
  FOREIGN KEY (product_id) REFERENCES products(product_id)
 
 )
@@ -80,3 +80,4 @@ date datetime NOT NULL ,
 FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 
 )
+
