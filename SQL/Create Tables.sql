@@ -34,8 +34,8 @@ product_id int PRIMARY KEY AUTO_INCREMENT,
 name varchar(100)  NOT NULL ,
 sku varchar(50) UNIQUE ,
 stock int DEFAULT 0,
-cost decimal NOT NULL ,
-retail_price decimal NOT NULL 
+cost decimal(10,2) NOT NULL ,
+retail_price decimal(10,2) NOT NULL 
 )
 
 --create cart item table --
@@ -53,7 +53,7 @@ CREATE TABLE Orders(
 order_id int PRIMARY KEY AUTO_INCREMENT,
 customer_id int,
 created_at DATETIME NOT NULL ,
-total_price decimal NOT NULL ,
+total_price decimal(10,2) NOT NULL ,
 status varchar(20) NOT NULL ,
 FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 )
@@ -64,7 +64,7 @@ order_item_id int PRIMARY KEY AUTO_INCREMENT,
 order_id int,
 product_id int,
 quantity int NOT NULL ,
-price decimal NOT NULL,
+price decimal(10,2) NOT NULL,
  FOREIGN KEY (order_id) REFERENCES Orders(order_id),
  FOREIGN KEY (product_id) REFERENCES products(product_id)
 
@@ -74,8 +74,9 @@ price decimal NOT NULL,
 CREATE TABLE Payment(
 payment_id int PRIMARY KEY AUTO_INCREMENT,
 customer_id int,
-amount int NOT NULL,
+amount decimal(10,2) NOT NULL,
 method varchar(50) NOT NULL ,
 date datetime NOT NULL ,
 FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+
 )
