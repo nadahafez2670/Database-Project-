@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      body {
+        background: linear-gradient(135deg, #0c080d, #1f1823, #382b3f);
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        color: #d6d3e5;
+      }
+
+      .signup-box {
+        background: #1f1823;
+        padding: 40px;
+        width: 380px; 
+        border-radius: 15px;
+        box-shadow: 0 0 20px #7a6284;
+        text-align: center;
+      }
+
+      form {
+        max-height: 320px; 
+        overflow-y: auto; 
+        padding-right: 10px; 
+        margin-bottom: 10px;
+      }
+
+      form::-webkit-scrollbar {
+        width: 6px; 
+      }
+
+      form::-webkit-scrollbar-track {
+        background: transparent; 
+        margin: 5px 0; 
+      }
+
+      form::-webkit-scrollbar-thumb {
+        background: #7a6284; 
+        border-radius: 20px; 
+      }
+
+      form::-webkit-scrollbar-thumb:hover {
+        background: #d6d3e5; 
+      }
+
+      .signup-box::-webkit-scrollbar {
+        width: 2px;
+      }
+      .signup-box::-webkit-scrollbar-track {
+        background: #1f1823;
+        border-radius: 10px;
+      }
+      .signup-box::-webkit-scrollbar-thumb {
+        background: #7a6284;
+        border-radius: 10px;
+      }
+      .signup-box::-webkit-scrollbar-thumb:hover {
+        background: #d6d3e5;
+      }
+
+      h2 {
+        color: #d6d3e5;
+        margin-bottom: 25px;
+        text-shadow: 0 0 10px #7a6284;
+      }
+
+      input {
+        width: 90%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        background: #382b3f;
+        color: #fff;
+        font-size: 14px;
+        box-shadow: 0 0 10px #52425c inset;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background: #7a6284;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: 0 0 15px #7a6284;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #d6d3e5;
+        color: #1f1823;
+      }
+
+      p {
+        color: #d6d3e5;
+        margin-top: 15px;
+        font-size: 14px;
+      }
+
+      a {
+        color: #7a6284;
+        font-weight: bold;
+        text-decoration: none;
+        text-shadow: 0 0 5px #7a6284;
+      }
+
+      /* POPUP STYLES */
+      .popup {
+        position: fixed;
+        inset: 0;
+        background: rgba(12, 8, 13, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+      }
+      .popup-box {
+        background: #1f1823;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 0 30px #7a6284;
+        animation: glow 1.5s infinite alternate;
+        max-width: 300px;
+      }
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 15px #52425c;
+        }
+        to {
+          box-shadow: 0 0 30px #7a6284;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="signup-box">
+      <h2>Create Account</h2>
+
+      <form method="POST" action="signup.php">
+        <input type="text" name="fname" placeholder="First Name" required />
+        <input type="text" name="lname" placeholder="Last Name" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password (8-16 chars)"
+          required
+        />
+        <input
+          type="tel"
+          name="phone1"
+          placeholder="Phone Number (11 Digits)"
+          required
+          pattern="[0-9]{11}"
+          title="Must be 11 digits"
+        />
+        <input
+          type="tel"
+          name="phone2"
+          placeholder="Alternative Phone (Optional)"
+          pattern="[0-9]{11}"
+          title="Must be 11 digits"
+        />
+        <input type="text" name="address" placeholder="Address" required />
+
+        <button type="submit">Create Account</button>
+      </form>
+
+      <p>
+        Already have an account?
+        <a href="Log.html">Login</a>
+      </p>
+    </div>
+
+    <div class="popup" id="error-popup">
+      <div class="popup-box">
+        <h2>⚠️ Error</h2>
+        <p>This email is already registered!</p>
+        <button onclick="closePopup()">Try Again</button>
+      </div>
+    </div>
+
+    <script>
+      if (
+        new URLSearchParams(window.location.search).get("error") === "exists"
+      ) {
+        document.getElementById("error-popup").style.display = "flex";
+      }
+      function closePopup() {
+        document.getElementById("error-popup").style.display = "none";
+        window.history.replaceState(
+          {},
+          document.title,
+          window.location.pathname
+        );
+      }
+    </script>
+  </body>
+</html>
