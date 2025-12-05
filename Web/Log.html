@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        background: linear-gradient(135deg, #0c080d, #1f1823, #382b3f);
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        color: #d6d3e5;
+      }
+      .login-box {
+        background: #1f1823;
+        padding: 40px;
+        width: 350px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px #7a6284;
+        text-align: center;
+      }
+      h2 {
+        color: #d6d3e5;
+        margin-bottom: 25px;
+        text-shadow: 0 0 10px #7a6284;
+      }
+      input {
+        width: 90%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        background: #382b3f;
+        color: #fff;
+        box-shadow: 0 0 10px #52425c inset;
+      }
+      button {
+        width: 100%;
+        padding: 12px;
+        background: #7a6284;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: 0 0 15px #7a6284;
+        transition: 0.3s;
+        margin-top: 10px;
+      }
+      button:hover {
+        background: #d6d3e5;
+        color: #1f1823;
+      }
+      a {
+        color: #7a6284;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .popup {
+        position: fixed;
+        inset: 0;
+        background: rgba(12, 8, 13, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+      }
+      .popup-box {
+        background: #1f1823;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 0 30px #7a6284;
+        animation: glow 1.5s infinite alternate;
+        max-width: 300px;
+      }
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 15px #52425c;
+        }
+        to {
+          box-shadow: 0 0 30px #7a6284;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-box">
+      <h2>Login</h2>
+      <form method="POST" action="login.php">
+        <input type="email" name="email" placeholder="Email" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
+      <p>Don’t have an account? <a href="signup.html">Create Account</a></p>
+    </div>
+    <div class="popup" id="error-popup">
+      <div class="popup-box">
+        <h2 id="popup-title">⚠️ Error</h2>
+        <p id="popup-msg">Something went wrong.</p>
+        <button onclick="closePopup()">Try Again</button>
+      </div>
+    </div>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const errorType = urlParams.get("error");
+      const successType = urlParams.get("success");
+      const popup = document.getElementById("error-popup");
+      const msg = document.getElementById("popup-msg");
+
+      if (errorType) {
+        popup.style.display = "flex";
+        if (errorType === "not_found")
+          msg.textContent = "Account not found with this email.";
+        else if (errorType === "wrong_pass")
+          msg.textContent = "Incorrect password.";
+      } else if (successType === "created") {
+        popup.style.display = "flex";
+        document.getElementById("popup-title").textContent = "✅ Success";
+        msg.textContent = "Account created! Please login.";
+      }
+      function closePopup() {
+        popup.style.display = "none";
+        window.history.replaceState(
+          {},
+          document.title,
+          window.location.pathname
+        );
+      }
+    </script>
+  </body>
+</html>
