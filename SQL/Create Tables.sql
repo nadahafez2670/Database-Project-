@@ -1,4 +1,4 @@
--- create data base--
+-- create data base --
 CREATE DATABASE Online_Store
 
 -- create customers table --
@@ -19,7 +19,7 @@ CREATE TABLE Customer_Phones(
     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id) ON DELETE CASCADE
 )
 
---create cart table--
+-- create cart table --
 CREATE TABLE Cart (
 cart_id int PRIMARY KEY AUTO_INCREMENT,
 customer_id int ,
@@ -28,7 +28,7 @@ created_at DATETIME ,
 FOREIGN KEY (customer_id) REFERENCES Customers(customer_id) ON DELETE CASCADE
 )
 
---create products table --
+-- create products table --
 CREATE TABLE Products (
 product_id int PRIMARY KEY AUTO_INCREMENT,
 name varchar(100)  NOT NULL ,
@@ -38,7 +38,7 @@ cost decimal(10,2) NOT NULL ,
 retail_price decimal(10,2) NOT NULL 
 )
 
---create cart item table --
+-- create cart item table --
 CREATE TABLE CartItem(
 cart_item_id int PRIMARY KEY AUTO_INCREMENT,
 cart_id int ,
@@ -58,7 +58,7 @@ status varchar(20) NOT NULL ,
 FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 )
 
--- create order item table--
+-- create order item table --
 CREATE TABLE OrderItem(
 order_item_id int PRIMARY KEY AUTO_INCREMENT,
 order_id int,
@@ -80,4 +80,5 @@ date datetime NOT NULL ,
 FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 
 )
+
 
